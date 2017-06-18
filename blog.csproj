@@ -1,0 +1,139 @@
+<Project ToolsVersion="15.0" Sdk="Microsoft.NET.Sdk.Web">
+	
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
+		
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Files not to show in IDE -->
+    <None Remove="yarn.lock" />
+
+    <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
+    <Content Remove="ClientApp\**" />
+    <None Include="ClientApp\boot-client.ts" />
+    <None Include="ClientApp\boot-server.ts" />
+    <None Include="ClientApp\app\app.module.ts" />
+    <None Include="ClientApp\app\components\app\app.component.css" />
+    <None Include="ClientApp\app\components\app\app.component.html" />
+    <None Include="ClientApp\app\components\app\app.component.ts" />
+    <None Include="ClientApp\app\components\counter\counter.component.html" />
+    <None Include="ClientApp\app\components\counter\counter.component.spec.ts" />
+    <None Include="ClientApp\app\components\counter\counter.component.ts" />
+    <None Include="ClientApp\app\components\fetchdata\fetchdata.component.html" />
+    <None Include="ClientApp\app\components\fetchdata\fetchdata.component.ts" />
+    <None Include="ClientApp\app\components\home\home.component.html" />
+    <None Include="ClientApp\app\components\home\home.component.ts" />
+    <None Include="ClientApp\app\components\navmenu\navmenu.component.css" />
+    <None Include="ClientApp\app\components\navmenu\navmenu.component.html" />
+    <None Include="ClientApp\app\components\navmenu\navmenu.component.ts" />
+    <None Include="ClientApp\dist\89889688147bd7575d6327160d64e760.svg" />
+    <None Include="ClientApp\dist\main-server.js" />
+    <None Include="ClientApp\dist\vendor-manifest.json" />
+    <None Include="ClientApp\dist\vendor.js" />
+    <None Include="ClientApp\test\boot-tests.ts" />
+    <None Include="ClientApp\test\karma.conf.js" />
+    <None Include="bin\Debug\netcoreapp1.1\blog.deps.json" />
+    <None Include="bin\Debug\netcoreapp1.1\blog.dll" />
+    <None Include="bin\Debug\netcoreapp1.1\blog.pdb" />
+    <None Include="bin\Debug\netcoreapp1.1\blog.runtimeconfig.dev.json" />
+    <None Include="bin\Debug\netcoreapp1.1\blog.runtimeconfig.json" />
+    <None Include="node_modules\.bin\acorn" />
+    <None Include="node_modules\.bin\ansi-html" />
+    <None Include="node_modules\.bin\atob" />
+    <None Include="node_modules\.bin\browserslist" />
+    <None Include="node_modules\.bin\css-beautify" />
+    <None Include="node_modules\.bin\cssesc" />
+    <None Include="node_modules\.bin\csso" />
+    <None Include="node_modules\.bin\editorconfig" />
+    <None Include="node_modules\.bin\errno" />
+    <None Include="node_modules\.bin\esparse" />
+    <None Include="node_modules\.bin\esvalidate" />
+    <None Include="node_modules\.bin\he" />
+    <None Include="node_modules\.bin\html-beautify" />
+    <None Include="node_modules\.bin\html-minifier" />
+    <None Include="node_modules\.bin\js-beautify" />
+    <None Include="node_modules\.bin\js-yaml" />
+    <None Include="node_modules\.bin\jsesc" />
+    <None Include="node_modules\.bin\json5" />
+    <None Include="node_modules\.bin\karma" />
+    <None Include="node_modules\.bin\miller-rabin" />
+    <None Include="node_modules\.bin\mime" />
+    <None Include="node_modules\.bin\mkdirp" />
+    <None Include="node_modules\.bin\nopt" />
+    <None Include="node_modules\.bin\regjsparser" />
+    <None Include="node_modules\.bin\rimraf" />
+    <None Include="node_modules\.bin\semver" />
+    <None Include="node_modules\.bin\sha.js" />
+    <None Include="node_modules\.bin\svgo" />
+    <None Include="node_modules\.bin\tsc" />
+    <None Include="node_modules\.bin\tsserver" />
+    <None Include="node_modules\.bin\uglifyjs" />
+    <None Include="node_modules\.bin\webpack" />
+    <None Include="node_modules\.bin\which" />
+    <None Include="node_modules\angular2-template-loader\.vscode\settings.json" />
+    <None Include="node_modules\extract-text-webpack-plugin\.github\ISSUE_TEMPLATE.md" />
+    <None Include="node_modules\extract-text-webpack-plugin\.github\PULL_REQUEST_TEMPLATE.md" />
+    <None Include="node_modules\fsevents\node_modules\.bin\har-validator" />
+    <None Include="node_modules\fsevents\node_modules\.bin\mkdirp" />
+    <None Include="node_modules\fsevents\node_modules\.bin\node-pre-gyp" />
+    <None Include="node_modules\fsevents\node_modules\.bin\nopt" />
+    <None Include="node_modules\fsevents\node_modules\.bin\rc" />
+    <None Include="node_modules\fsevents\node_modules\.bin\rimraf" />
+    <None Include="node_modules\fsevents\node_modules\.bin\semver" />
+    <None Include="node_modules\fsevents\node_modules\.bin\sshpk-conv" />
+    <None Include="node_modules\fsevents\node_modules\.bin\sshpk-sign" />
+    <None Include="node_modules\fsevents\node_modules\.bin\sshpk-verify" />
+    <None Include="node_modules\fsevents\node_modules\.bin\uuid" />
+    <None Include="node_modules\html-loader\.github\ISSUE_TEMPLATE.md" />
+    <None Include="node_modules\html-loader\.github\PULL_REQUEST_TEMPLATE.md" />
+    <None Include="node_modules\jasmine-core\.github\CONTRIBUTING.md" />
+    <None Include="node_modules\jasmine-core\.github\ISSUE_TEMPLATE.md" />
+    <None Include="node_modules\log4js\node_modules\.bin\semver" />
+    <None Include="node_modules\postcss-modules-local-by-default\.idea\.name" />
+    <None Include="node_modules\postcss-modules-local-by-default\.idea\jsLibraryMappings.xml" />
+    <None Include="node_modules\postcss-modules-local-by-default\.idea\misc.xml" />
+    <None Include="node_modules\postcss-modules-local-by-default\.idea\modules.xml" />
+    <None Include="node_modules\postcss-modules-local-by-default\.idea\postcss-modules-local-by-default.iml" />
+    <None Include="node_modules\postcss-modules-local-by-default\.idea\vcs.xml" />
+    <None Include="node_modules\postcss-modules-local-by-default\.idea\workspace.xml" />
+    <None Include="node_modules\postcss-modules-local-by-default\.idea\inspectionProfiles\Project_Default.xml" />
+    <None Include="node_modules\postcss-modules-local-by-default\.idea\inspectionProfiles\profiles_settings.xml" />
+    <None Include="node_modules\postcss-modules-local-by-default\.idea\libraries\postcss_modules_local_by_default_node_modules.xml" />
+    <None Include="node_modules\recast\node_modules\.bin\esparse" />
+    <None Include="node_modules\recast\node_modules\.bin\esvalidate" />
+    <None Include="node_modules\style-loader\.github\ISSUE_TEMPLATE.md" />
+    <None Include="node_modules\style-loader\.github\PULL_REQUEST_TEMPLATE.md" />
+    <None Include="node_modules\url-loader\.github\ISSUE_TEMPLATE.md" />
+    <None Include="node_modules\url-loader\.github\PULL_REQUEST_TEMPLATE.md" />
+    <None Include=".gitignore" />
+    <None Include="blog.csproj" />
+    <None Include="blog.csproj.user" />
+  </ItemGroup>
+	
+  <Target Name="RunWebpack" AfterTargets="ComputeFilesToPublish">
+
+    <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+    <Exec Command="/usr/local/bin/npm install" />
+    <Exec Command="/usr/local/bin/node node_modules/webpack/bin/webpack.js --config webpack.config.vendor.js --env.prod" />
+    <Exec Command="/usr/local/bin/node node_modules/webpack/bin/webpack.js --env.prod" />
+
+    <!-- Include the newly-built files in the publish output -->
+    <ItemGroup>
+      <DistFiles Include="wwwroot\dist\**; ClientApp\dist\**" />
+      <ResolvedFileToPublish Include="@(DistFiles-&gt;'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+        <RelativePath>%(DistFiles.Identity)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
+	
+</Project>
