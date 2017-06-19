@@ -31,10 +31,14 @@ Obj/
 /wwwroot/dist/**
 /ClientApp/dist/**
 <<<<<<< HEAD
+<<<<<<< HEAD
 /Services/**
 =======
 /Services/MailService.cs
 >>>>>>> 36db13d... Update with new services and playing around
+=======
+/Services/**
+>>>>>>> 1078b8a... New commit for gitignore
 
 # Workaround for https://github.com/aspnet/JavaScriptServices/issues/235
 !/wwwroot/dist/_placeholder.txt
