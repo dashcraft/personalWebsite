@@ -1,6 +1,38 @@
-@media (max-width: 767px) {
+@media (max-width: 768px) {
     /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */
     .body-content {
         padding-top: 50px;
+    }
+    #main_navigation {
+        position: fixed;
+        background-color: white;
+        width: 0;
+        max-width: 40vw;
+        height: 100vh;
+        box-shadow: 2px 0px 6px 0px rgba(0, 0, 0, 0.5);
+        transition: all 0.2s ease-in-out;
+    }
+    .nav-expanded {
+        width: 30% !important;
+    }
+    .main_header {
+        width: 100vw;
+        max-height: 140px;
+        min-height: 100px;
+        text-align: center;
+        background-color: #323133;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
+    }
+    .main_header img {
+        padding-top: 5%;
+    }
+    .main_page_container {
+        height: 100vh;
+        width: 100vw;
+    }
+    #button-test {
+        position: absolute;
+        bottom: 0;
+        left: 75%;
     }
 }
