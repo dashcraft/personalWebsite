@@ -33,8 +33,8 @@ namespace blog.Controllers
         public Post PostPosts([FromBody] JObject data)
         {
             dynamic json = data;
-
-
+            List<PostTag> ptags = json.tags.Cast<PostTag>().ToList();
+            List<PostCats> pcats = json.categories.Cast<PostCats>().ToList();
             using(var db = new BloggingContext()){
               
                 DateTime rightnow = DateTime.Now;
@@ -46,6 +46,8 @@ namespace blog.Controllers
                         Meta = json.metadata,
                         UrlSlug =  Regex.Replace(json.title, @"[^A-Za-z0-9_\.~]+", "-"),
                         Published = json.isPublished,
+                        PostCats = pcats,
+                        Tags = ptags,
                         PostedOn = rightnow
                     };
 

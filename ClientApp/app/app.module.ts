@@ -7,27 +7,25 @@ import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { BrowserModule } from '@angular/platform-browser';
-
-
+import {MainRoutingModule} from './components/app/app.module';
+import { AdminComponent } from './components/admin/admin.component';
+import { AdminRoutingModule } from './components/admin/admin.module';
 
 @NgModule({
     bootstrap: [ AppComponent ],
     declarations: [
         AppComponent,
-        NavMenuComponent,
+        HomeComponent,
         CounterComponent,
+        HomeComponent,
+        NavMenuComponent,
         FetchDataComponent,
-        HomeComponent
+        AdminComponent
     ],
     imports: [
-        UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
-        RouterModule.forRoot([
-            { path: '', redirectTo: 'home', pathMatch: 'full' },
-            { path: 'home', component: HomeComponent },
-            { path: 'counter', component: CounterComponent },
-            { path: 'fetch-data', component: FetchDataComponent },
-            { path: '**', redirectTo: 'home' }
-        ])
+        UniversalModule,
+        AdminRoutingModule,
+        MainRoutingModule // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
     ]
 })
 export class AppModule {
