@@ -10,6 +10,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import {MainRoutingModule} from './components/app/app.module';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminRoutingModule } from './components/admin/admin.module';
+import { AdminNavComponent } from './components/admin-navbar/adminNav.component';
+import { AdminPostComponent } from './components/admin-post/adminPost.component';
+import { QuillModule } from 'ngx-quill';
+
+
 
 @NgModule({
     bootstrap: [ AppComponent ],
@@ -20,10 +25,13 @@ import { AdminRoutingModule } from './components/admin/admin.module';
         HomeComponent,
         NavMenuComponent,
         FetchDataComponent,
+        AdminNavComponent,
+        AdminPostComponent,
         AdminComponent
     ],
     imports: [
         UniversalModule,
+        QuillModule,
         AdminRoutingModule,
         MainRoutingModule // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
     ]
