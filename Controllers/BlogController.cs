@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
@@ -29,23 +30,66 @@ namespace blog.Controllers
             }
         
         }
+
+        [Route("{id:int}")]
+        [HttpGet]
+        public Post getPost(int id){
+            using(var db = new BloggingContext()){
+                try{
+                    return db.Posts.FirstOrDefault(x=> x.PostId == id);
+                }
+                catch(Exception e){
+                    throw e;
+                }
+
+                
+            }
+        }
+        [Route("slug/{slug}")]
+        [HttpGet]
+        public Post getSlug(String slug){
+            using(var db = new BloggingContext()){
+                try{
+                    return db.Posts.FirstOrDefault(x=> x.UrlSlug == slug);
+                }
+                catch(Exception e){
+                    throw e;
+                }
+
+                
+            }
+        }
+
         [HttpPost]
-        public Post PostPosts([FromBody] JObject data)
+        public async Task<Post> PostPosts([FromBody] JObject data)
         {
-            dynamic json = data;
-            List<PostTag> ptags = json.tags.Cast<PostTag>().ToList();
-            List<PostCats> pcats = json.categories.Cast<PostCats>().ToList();
+            JToken postToken = data;
+            String title = (string)postToken.SelectToken("title");
+            String ShortDescription = (string)postToken.SelectToken("ShortDescription");
+            String description = (string)postToken.SelectToken("Description");
+            String meta = (string)postToken.SelectToken("meta");
+            Boolean isPublished = (bool)postToken.SelectToken("published");
+            List<PostTag> ptags = new List<PostTag>();
+            List<PostCats> pcats = new List<PostCats>();
+            if(postToken.SelectToken("tags") != null){
+                ptags = postToken.SelectToken("tags").Cast<PostTag>().ToList();
+            }
+            
+            
+            if(postToken.SelectToken("categories") != null){
+                pcats = postToken.SelectToken("categories").Cast<PostCats>().ToList();
+            }
             using(var db = new BloggingContext()){
               
                 DateTime rightnow = DateTime.Now;
                 var post = new Post
                      {
-                        Title= json.title,
-                        ShortDescription = json.ShortDescription,
-                        Description =json.Description,
-                        Meta = json.metadata,
-                        UrlSlug =  Regex.Replace(json.title, @"[^A-Za-z0-9_\.~]+", "-"),
-                        Published = json.isPublished,
+                        Title= title,
+                        ShortDescription = ShortDescription,
+                        Description = description,
+                        Meta = meta,
+                        UrlSlug =  Regex.Replace((string)postToken.SelectToken("title"), @"[^A-Za-z0-9_\.~]+", "-")+rightnow.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss"),
+                        Published = isPublished,
                         PostCats = pcats,
                         Tags = ptags,
                         PostedOn = rightnow
@@ -55,7 +99,7 @@ namespace blog.Controllers
                 
                 try{
                     db.Posts.Add(post);
-                    db.SaveChanges();
+                    await db.SaveChangesAsync();
                     return db.Posts.FirstOrDefault();
                 }
                 catch(Exception e){
@@ -66,28 +110,49 @@ namespace blog.Controllers
         
         }
         
+        [Route("{id:int}")]
         [HttpPut]
-        public Post UpdatePost([FromBody] JObject data)
+        public async Task<JsonResult> UpdatePost(int id, [FromBody] JObject data)
         {
-            dynamic json = data;
-            int postid = json.postid;
+            JToken postToken = data;
+            int postid = id;
+            String title = (string)postToken.SelectToken("title");
+            String ShortDescription = (string)postToken.SelectToken("ShortDescription");
+            String description = (string)postToken.SelectToken("Description");
+            String meta = (string)postToken.SelectToken("meta");
+            Boolean isPublished = (bool)postToken.SelectToken("published");
+            List<PostTag> ptags = new List<PostTag>();
+            List<PostCats> pcats = new List<PostCats>();
+            if(postToken.SelectToken("tags") != null){
+                ptags = postToken.SelectToken("tags").Cast<PostTag>().ToList();
+            }
+            
+            
+            if(postToken.SelectToken("categories") != null){
+                pcats = postToken.SelectToken("categories").Cast<PostCats>().ToList();
+            }
+
+
             DateTime rightnow = DateTime.Now;
             using(var db = new BloggingContext()){
                 var post = db.Posts.Single(
                     x => x.PostId == postid
                 );
-                post.Title= json.title;
-                post.ShortDescription = json.ShortDescription;
-                post.Description = json.Description;
-                post.Meta = json.metadata;
-                post.UrlSlug =  Regex.Replace(json.title, @"[^A-Za-z0-9_\.~]+", "-");
-                post.Published = json.isPublished;
+                post.Title= title;
+                post.ShortDescription = ShortDescription;
+                post.Description = description;
+                post.Meta = meta;
+                post.UrlSlug =  Regex.Replace((string)postToken.SelectToken("title"), @"[^A-Za-z0-9_\.~]+", "-")+rightnow.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss");
+                post.Published = isPublished;
                 post.Modified = rightnow;
                 try{
-                    db.SaveChanges();
-                    return db.Posts.Single(
-                        x => x.PostId == postid
-                    );
+                    await db.SaveChangesAsync();
+                    return Json(
+                        new { 
+                            success = true
+                    });
+                    
+                    
                 }
                 catch(Exception e){
                     throw e;
@@ -96,7 +161,30 @@ namespace blog.Controllers
             }
         
         }
+
+
+        [Route("{id:int}")]
+        [HttpDelete]
+        public async Task<JsonResult> deletePost(int id)
+        {
+            using(var db = new BloggingContext()){
+                try{
+                    var post = db.Posts.FirstOrDefault(x=> x.PostId == id);
+                    db.Posts.Remove(post);
+                    await db.SaveChangesAsync();
+                    return Json(
+                        new { 
+                            success = true
+                            });
+                }
+                catch(Exception e){
+                    throw e;
+                }
+
+                
+            }
         
+        }
 
     }
 }

@@ -1,8 +1,22 @@
-<div class="common">
-    <h3>Posts go here</h3>
+<div class="form">
+    <h2 *ngIf="id">Update Post</h2>
+    <h2 *ngIf="!id">New Post</h2>
+    <div class="form-group">
+        <label for="Something Else Goes Here">Title</label>
+        <input [(ngModel)]="title" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="Something Else Goes Here">Short Description</label>
+        <input [(ngModel)]="shortDescription" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="Something Else Goes Here">Meta</label>
+        <input [(ngModel)]="meta" type="text" class="form-control">
+    </div>
+
 
     <!-- Create the editor container -->
-    <quill-editor (onContentChanged)="consoleAllTheThings($event)," placeholder=" ">
+    <quill-editor theme="snow" #editor placeholder="Edit Post Here...">
 
     </quill-editor>
 
@@ -11,4 +25,6 @@
     <!-- Include the Quill library -->
 
 </div>
-<button (click)="checkThis()">Check this</button>
+<button *ngIf="id" (click)="deletePost()"> Delete </button>
+<button *ngIf="id" (click)="updatePost()">Update</button>
+<button *ngIf="!id" (click)="submitPost()">Submit</button>

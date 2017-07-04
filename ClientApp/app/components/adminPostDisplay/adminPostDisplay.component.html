@@ -1,0 +1,23 @@
+<div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Title</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr *ngFor="let post of display">
+                <td>{{post.postId }}</td>
+                <td>{{post.postedOn | date: 'MM/dd/yyyy'}}</td>
+                <td>{{post.title}}</td>
+                <td>
+                    <a href="#" [routerLink]="['/admin/post', post.postId]">Edit</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -13,7 +13,11 @@ import { AdminRoutingModule } from './components/admin/admin.module';
 import { AdminNavComponent } from './components/admin-navbar/adminNav.component';
 import { AdminPostComponent } from './components/admin-post/adminPost.component';
 import { QuillModule } from 'ngx-quill';
+import { adminPostDisplayComponent } from './components/adminPostDisplay/adminPostDisplay.component';
+import { BlogComponent } from './components/blog/blog.component';
 
+
+import { FormsModule }   from '@angular/forms';
 
 
 @NgModule({
@@ -24,13 +28,16 @@ import { QuillModule } from 'ngx-quill';
         CounterComponent,
         HomeComponent,
         NavMenuComponent,
+        adminPostDisplayComponent,
         FetchDataComponent,
         AdminNavComponent,
         AdminPostComponent,
+        BlogComponent,
         AdminComponent
     ],
     imports: [
         UniversalModule,
+        FormsModule,
         QuillModule,
         AdminRoutingModule,
         MainRoutingModule // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
