@@ -1,0 +1,40 @@
+figure img {
+    text-align: center;
+    max-width: 55em;
+}
+
+.align-center p {
+    display: inline;
+}
+
+.align-center p:first-of-type:before {
+    content: "";
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.align-center p:before {
+    content: ">";
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.inner.post {
+    max-width: 55em;
+}
+
+.left-side-back {
+    display: initial;
+    position: fixed;
+    left: 2;
+    top: 40vh;
+}
+
+@media screen and (max-width: 1000px) {
+    .left-side-back {
+        display: none;
+        position: fixed;
+        left: 2;
+        top: 40vh;
+    }
+}

@@ -1,12 +1,17 @@
-<div id="main_navigation" [ngClass]="{'nav-expanded': isExpanded === true }" style="display:none">
-    <nav-menu></nav-menu>
-</div>
-<div class='main_page_container'>
-    <div class='row'>
-
-        <div class='col-sm-9 body-content'>
-            <router-outlet></router-outlet>
-
+<router-outlet></router-outlet>
+<footer id="footer">
+    <div class="inner">
+        <div class="flex">
+            <div class="copyright">
+                Design: <a href="https://templated.co">TEMPLATED</a>. Some Images: <a href="https://unsplash.com">Unsplash</a>.
+            </div>
+            <ul class="icons">
+                <li><a href="https://twitter.com/D_ofashandfire" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+                <li><a href="https://www.linkedin.com/in/daashcraft/" class="icon fa-linkedin"><span class="label">linkedIn</span></a></li>
+                <li><a href="https://medium.com/@D_ofashandfire" class="icon fa-medium"><span class="label">Medium</span></a></li>
+                <li><a href="https://dribbble.com/D_ofashandfire" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+                <li><a href="https://github.com/dashcraft" class="icon fa-github"><span class="label">Github</span></a></li>
+            </ul>
         </div>
     </div>
-</div>
+</footer>

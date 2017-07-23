@@ -8,6 +8,8 @@ using Newtonsoft.Json.Linq;
 using blog.Models;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using Microsoft.EntityFrameworkCore;
+
 namespace blog.Controllers
 {
     [Route("api/[controller]")]
@@ -60,6 +62,26 @@ namespace blog.Controllers
             }
         }
 
+        [Route("categories")]
+        [HttpGet]
+        public IEnumerable<Category> getCats(){
+            using(var db = new BloggingContext()){
+                try{
+                    var response = db.Categories
+                    .Include(cat => cat.PostCats)
+                    .ThenInclude(postcats => postcats.PostId)
+                    .ToList();
+
+                    return response;
+                }
+                catch(Exception e){
+                    throw e;
+                }
+
+                
+            }
+        }
+
         [HttpPost]
         public async Task<Post> PostPosts([FromBody] JObject data)
         {
@@ -71,10 +93,14 @@ namespace blog.Controllers
             Boolean isPublished = (bool)postToken.SelectToken("published");
             List<PostTag> ptags = new List<PostTag>();
             List<PostCats> pcats = new List<PostCats>();
+            List<Category> cats = new List<Category>();
+            List<Tag> tags = new List<Tag>();
             if(postToken.SelectToken("tags") != null){
                 ptags = postToken.SelectToken("tags").Cast<PostTag>().ToList();
+                foreach(PostTag tag in ptags){
+                    tags.Add(new Tag(){Name =tag.Tag.Name});
+                }
             }
-            
             
             if(postToken.SelectToken("categories") != null){
                 pcats = postToken.SelectToken("categories").Cast<PostCats>().ToList();

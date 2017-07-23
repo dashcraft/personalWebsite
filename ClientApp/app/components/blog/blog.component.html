@@ -1,1 +1,29 @@
-<h3>Oi bruh</h3>
+<div class="subpage">
+    <nav-menu></nav-menu>
+    <section id="three" class="wrapper">
+        <div class="inner">
+            <header class="align-center">
+                <h2>{{res?.feed.title}}</h2>
+                <p>Tech Fitness Life</p>
+            </header>
+            <p>I'm a software and web developer out of Oklahoma City, Oklahoma. I am also the primary admin for the OKC free code camp usergroup and i am <a href="https://www.youtube.com/channel/UC8hCTycBWI08Ro_Z23yDY_Q">TheSnarkyDev</a> on youtube. I've
+                been trying to be more active in the community both in person and via articles. If you enjoy technology, food, fitness, the outdoors and combat sports, then i am confident you will find my blog worth following.</p>
+            <p>I am also a blue belt in Brazilian Jiu-Jitsu, an avid fisherman, a bow hunter and a father.</p>
+            <div class="flex flex-2">
+                <article *ngFor="let post of posts; let i = index">
+                    <div class="image fit">
+                        <img [src]="post.thumbnail" [alt]="post.title" />
+                    </div>
+                    <header>
+                        <h3>{{post.title}}</h3>
+                    </header>
+                    <p [innerHtml]="post.description"></p>
+                    <footer>
+                        <a [routerLink]="['/blog',i]" class="button special">More</a>
+                    </footer>
+                </article>
+
+            </div>
+        </div>
+    </section>
+</div>

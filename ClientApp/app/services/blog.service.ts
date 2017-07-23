@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Headers, Http } from "@angular/http";
+import { Headers, Http, Response } from "@angular/http";
 import "rxjs/add/operator/toPromise";
 
 
@@ -36,7 +36,7 @@ export class BlogService {
         .catch(this.handleError);
     }
 
-    getUrlSlug(slug:number): Promise<any> {
+    getUrlSlug(slug:String): Promise<any> {
         return this.http.get("/api/blog/slug/"+slug).toPromise()
         .then(response => {
                 let result = response.json();
@@ -47,6 +47,19 @@ export class BlogService {
             })
         .catch(this.handleError);
     }
+
+    getCategories(slug:String): Promise<any> {
+        return this.http.get("/api/blog/categories").toPromise()
+        .then(response => {
+                let result = response.json();
+                if (result.State == 1) {
+                    let json = result.Data as any;
+                }
+                return result;
+            })
+        .catch(this.handleError);
+    }
+
 
     logout() { }
 

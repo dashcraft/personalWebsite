@@ -1,0 +1,19 @@
+<div class="subpage">
+    <nav-menu></nav-menu>
+    <section id="three" class="wrapper">
+        <header class="align-center">
+            <h2>{{post?.title}}</h2>
+            <h4><a href="{{post?.link}}">View Original Post on Medium</a></h4>
+            <p *ngFor="let cat of post?.categories"><a href="https://medium.com/tag/{{cat}}?source=search">{{cat}}</a></p>
+        </header>
+        <div class="inner post" [innerHtml]="post?.content">
+
+        </div>
+    </section>
+</div>
+
+<div class="left-side-back">
+    <button *ngIf="previous" class="button small fit">Previous</button>
+    <button class="button special small fit">Go Back</button>
+    <button *ngIf="next" class="button small fit">Next</button>
+</div>

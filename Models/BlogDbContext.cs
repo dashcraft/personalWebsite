@@ -8,6 +8,8 @@ namespace blog.Models
     public class BloggingContext : DbContext
     {
         public DbSet<Category> Categories { get; set; }
+        public DbSet<PostCats> PostCats { get; set; }
+        public DbSet<PostCats> PostTags { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Post> Posts { get; set; }
 
